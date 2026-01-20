@@ -18,16 +18,6 @@ const root = createRoot(renderer)
 root.render(<App />)
 ```
 
-### render(element, config?) [Deprecated]
-
-> Use `createRoot(renderer).render(node)` instead.
-
-```tsx
-// Deprecated
-import { render } from "@opentui/react"
-render(<App />)
-```
-
 ## Hooks
 
 ### useRenderer()

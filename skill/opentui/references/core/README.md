@@ -4,7 +4,7 @@ The foundational library for building terminal user interfaces. Provides an impe
 
 ## Overview
 
-OpenTUI Core runs on V8 via Bun with native Zig bindings for performance-critical operations:
+OpenTUI Core runs on Bun with native Zig bindings for performance-critical operations:
 - **Renderer**: Manages terminal output, input events, and the rendering loop
 - **Renderables**: Hierarchical UI building blocks with Yoga layout
 - **Constructs**: Declarative wrappers for composing Renderables
