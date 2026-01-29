@@ -1,4 +1,4 @@
-# OpenTUI Skill for OpenCode
+# OpenTUI Skill
 
 OpenTUI platform reference docs. Covers the Core imperative API, React reconciler, Solid reconciler, layout system, components, keyboard handling, animations, and testing.
 
