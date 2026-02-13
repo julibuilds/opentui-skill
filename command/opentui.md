@@ -1,37 +1,18 @@
 ---
-description: Load OpenTUI skill and get contextual guidance for building terminal user interfaces
+name: opentui
+description: This skill should be used when the user asks to "build a TUI", "create a terminal UI", "create TUI app", "use OpenTUI", or mentions OpenTUI, terminal user interface development, TUI components, or keyboard handling in terminal apps.
 ---
 
 Load the OpenTUI TUI framework skill and help with any terminal user interface development task.
 
 ## Workflow
 
-### Step 1: Check for --update-skill flag
+### Step 1: Load opentui skill
 
-If $ARGUMENTS contains `--update-skill`:
+Read the skill definition from the skill directory:
+- Read `skill/opentui/SKILL.md` for the main skill overview and decision trees
 
-1. Determine install location by checking which exists:
-   - Local: `.opencode/skill/opentui/`
-   - Global: `~/.config/opencode/skill/opentui/`
-
-2. Run the appropriate install command:
-   ```bash
-   # For local installation
-   curl -fsSL https://raw.githubusercontent.com/msmps/opentui-skill/main/install.sh | bash
-
-   # For global installation
-   curl -fsSL https://raw.githubusercontent.com/msmps/opentui-skill/main/install.sh | bash -s -- --global
-   ```
-
-3. Output success message and stop (do not continue to other steps).
-
-### Step 2: Load opentui skill
-
-```
-skill({ name: 'opentui' })
-```
-
-### Step 3: Identify task type from user request
+### Step 2: Identify task type from user request
 
 Analyze $ARGUMENTS to determine:
 - **Framework needed** (Core imperative, React declarative)
@@ -39,9 +20,9 @@ Analyze $ARGUMENTS to determine:
 
 Use decision trees in SKILL.md to select correct reference files.
 
-### Step 4: Read relevant reference files
+### Step 3: Read relevant reference files
 
-Based on task type, read from `references/<area>/`:
+Based on task type, read from `skill/opentui/references/<area>/`:
 
 | Task | Files to Read |
 |------|---------------|
@@ -54,11 +35,11 @@ Based on task type, read from `references/<area>/`:
 | Write tests | `testing/REFERENCE.md` |
 | Understand patterns | `<framework>/patterns.md` |
 
-### Step 5: Execute task
+### Step 4: Execute task
 
 Apply OpenTUI-specific patterns and APIs from references to complete the user's request.
 
-### Step 6: Summarize
+### Step 5: Summarize
 
 ```
 === OpenTUI Task Complete ===
