@@ -1,8 +1,6 @@
 ---
 name: opentui
-description: Comprehensive OpenTUI skill for building terminal user interfaces. Covers the core imperative API and React reconciler. Use for any TUI development task including components, layout, keyboard handling, animations, and testing.
-metadata:
-   references: core, react
+description: This skill should be used when the user asks to "build a TUI", "create a terminal UI", "create TUI app", "use OpenTUI", or mentions OpenTUI, terminal user interface development, TUI components, keyboard handling in terminal apps, or terminal layout.
 ---
 
 # OpenTUI Platform Skill
@@ -182,6 +180,52 @@ For component naming differences and text modifiers, see `components/REFERENCE.m
 | Containers | `./references/components/containers.md` | box, scrollbox, borders |
 | Inputs | `./references/components/inputs.md` | input, textarea, select, tab-select |
 | Code & Diff | `./references/components/code-diff.md` | code, line-number, diff |
+
+## Task Execution Workflow
+
+When invoked with `/opentui <task>`, follow this workflow:
+
+### Step 1: Identify task type
+
+Analyze $ARGUMENTS to determine:
+- **Framework needed**: Core (imperative) or React (declarative)
+- **Task type**: new project setup, component implementation, layout, keyboard handling, debugging, testing
+
+Use decision trees above to select correct reference files.
+
+### Step 2: Read relevant reference files
+
+Based on task type, read from `./references/<area>/`:
+
+| Task | Files to Read |
+|------|---------------|
+| New project setup | `<framework>/REFERENCE.md` + `<framework>/configuration.md` |
+| Implement components | `<framework>/api.md` + `components/<category>.md` |
+| Layout/positioning | `layout/REFERENCE.md` + `layout/patterns.md` |
+| Handle keyboard input | `keyboard/REFERENCE.md` |
+| Add animations | `animation/REFERENCE.md` |
+| Debug/troubleshoot | `<framework>/gotchas.md` + `testing/REFERENCE.md` |
+| Write tests | `testing/REFERENCE.md` |
+| Understand patterns | `<framework>/patterns.md` |
+
+### Step 3: Execute task
+
+Apply OpenTUI-specific patterns and APIs from references to complete the user's request.
+
+### Step 4: Summarize
+
+```
+=== OpenTUI Task Complete ===
+
+Framework: <core | react>
+Files referenced: <reference files consulted>
+
+<brief summary of what was done>
+```
+
+<user-request>
+$ARGUMENTS
+</user-request>
 
 ## Resources
 
