@@ -17,14 +17,6 @@ Single-line text input field.
   focused
 />
 
-// Solid
-<input
-  value={value()}
-  onInput={(newValue) => setValue(newValue)}
-  placeholder="Enter text..."
-  focused
-/>
-
 // Core
 const input = new InputRenderable(renderer, {
   id: "name",
@@ -81,18 +73,6 @@ function ControlledInput() {
   )
 }
 
-// Solid
-function ControlledInput() {
-  const [value, setValue] = createSignal("")
-  
-  return (
-    <input
-      value={value()}
-      onInput={setValue}
-      focused
-    />
-  )
-}
 ```
 
 ## Textarea Component
@@ -106,16 +86,6 @@ Multi-line text input field.
 <textarea
   value={text}
   onChange={(newText) => setText(newText)}
-  placeholder="Enter multiple lines..."
-  width={40}
-  height={10}
-  focused
-/>
-
-// Solid
-<textarea
-  value={text()}
-  onInput={(newText) => setText(newText)}
   placeholder="Enter multiple lines..."
   width={40}
   height={10}
@@ -142,6 +112,11 @@ const textarea = new TextareaRenderable(renderer, {
 />
 ```
 
+### Keyboard Shortcuts
+
+Default keybindings:
+- `Cmd/Super+A` - Select all text
+
 ### Syntax Highlighting
 
 ```tsx
@@ -165,18 +140,6 @@ List selection for choosing from options.
     { name: "Option 1", description: "First option", value: "1" },
     { name: "Option 2", description: "Second option", value: "2" },
     { name: "Option 3", description: "Third option", value: "3" },
-  ]}
-  onSelect={(index, option) => {
-    console.log("Selected:", option.name)  // Called when Enter is pressed
-  }}
-  focused
-/>
-
-// Solid
-<select
-  options={[
-    { name: "Option 1", description: "First option", value: "1" },
-    { name: "Option 2", description: "Second option", value: "2" },
   ]}
   onSelect={(index, option) => {
     console.log("Selected:", option.name)  // Called when Enter is pressed
@@ -238,7 +201,7 @@ Default keybindings:
 | `onChange` | **Arrow keys** - user navigates list | Preview, update UI as user browses |
 
 ```tsx
-// React/Solid
+// React
 <select
   onSelect={(index, option) => {
     // Called when Enter is pressed - selection confirmed
@@ -274,18 +237,6 @@ Horizontal tab-based selection.
     { name: "Home", description: "Dashboard view" },
     { name: "Settings", description: "Configuration" },
     { name: "Help", description: "Documentation" },
-  ]}
-  onSelect={(index, option) => {
-    console.log("Tab selected:", option.name)  // Called when Enter is pressed
-  }}
-  focused
-/>
-
-// Solid (note underscore)
-<tab_select
-  options={[
-    { name: "Home", description: "Dashboard view" },
-    { name: "Settings", description: "Configuration" },
   ]}
   onSelect={(index, option) => {
     console.log("Tab selected:", option.name)  // Called when Enter is pressed
@@ -331,11 +282,6 @@ Same pattern as Select - `onSelect` for Enter key, `onChange` for navigation:
   selectedIndex={0}            // Initially selected tab
 />
 
-// Solid
-<tab_select
-  tabWidth={20}
-  selectedIndex={0}
-/>
 ```
 
 ### Navigation
@@ -508,24 +454,3 @@ Options must be objects with `name` property:
 ]} />
 ```
 
-### Solid Uses Underscores
-
-```tsx
-// React
-<tab-select />
-
-// Solid
-<tab_select />
-```
-
-### Value vs onInput (Solid)
-
-Solid uses `onInput` instead of `onChange`:
-
-```tsx
-// React
-<input value={value} onChange={setValue} />
-
-// Solid
-<input value={value()} onInput={setValue} />
-```

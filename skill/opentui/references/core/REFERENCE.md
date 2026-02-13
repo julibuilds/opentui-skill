@@ -15,7 +15,7 @@ OpenTUI Core runs on Bun with native Zig bindings for performance-critical opera
 Use the core imperative API when:
 - Building a library or framework on top of OpenTUI
 - Need maximum control over rendering and state
-- Want smallest possible bundle size (no React/Solid runtime)
+- Want smallest possible bundle size (no React runtime)
 - Building performance-critical applications
 - Integrating with existing imperative codebases
 
@@ -24,9 +24,8 @@ Use the core imperative API when:
 | Scenario | Use Instead |
 |----------|-------------|
 | Familiar with React patterns | `@opentui/react` |
-| Want fine-grained reactivity | `@opentui/solid` |
-| Building typical applications | React or Solid reconciler |
-| Rapid prototyping | React or Solid reconciler |
+| Building typical applications | React reconciler |
+| Rapid prototyping | React reconciler |
 
 ## Quick Start
 
@@ -138,7 +137,6 @@ bun run build
 ## See Also
 
 - [React](../react/REFERENCE.md) - React reconciler for declarative TUI
-- [Solid](../solid/REFERENCE.md) - Solid reconciler for declarative TUI
 - [Layout](../layout/REFERENCE.md) - Yoga/Flexbox layout system
 - [Components](../components/REFERENCE.md) - Component reference by category
 - [Keyboard](../keyboard/REFERENCE.md) - Input handling and shortcuts

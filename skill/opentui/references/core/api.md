@@ -12,6 +12,7 @@ import { createCliRenderer, type CliRendererConfig } from "@opentui/core"
 const renderer = await createCliRenderer({
   targetFPS: 60,              // Target frames per second
   exitOnCtrlC: true,          // Exit process on Ctrl+C
+  autoFocus: true,            // Auto-focus on click (default: true)
   consoleOptions: {           // Debug console overlay
     position: ConsolePosition.BOTTOM,
     sizePercent: 30,
@@ -29,11 +30,15 @@ renderer.width             // Terminal width in columns
 renderer.height            // Terminal height in rows
 renderer.keyInput          // Keyboard event emitter
 renderer.console           // Console overlay controller
+renderer.themeMode         // "dark" | "light" | null - current terminal theme
+renderer.clipboard         // Clipboard instance for OSC 52 operations
 
 renderer.start()           // Start render loop
 renderer.stop()            // Stop render loop
 renderer.destroy()         // Cleanup and exit alternate screen
 renderer.requestRender()   // Request a re-render
+
+renderer.on("theme_mode", (mode) => {})  // Listen for theme changes
 ```
 
 ### Console Overlay
@@ -87,11 +92,15 @@ interface CommonProps {
   paddingRight?: number
   paddingBottom?: number
   paddingLeft?: number
+  paddingX?: number                  // Horizontal padding (left + right)
+  paddingY?: number                  // Vertical padding (top + bottom)
   margin?: number
   marginTop?: number
   marginRight?: number
   marginBottom?: number
   marginLeft?: number
+  marginX?: number | "auto"          // Horizontal margin (left + right)
+  marginY?: number | "auto"          // Vertical margin (top + bottom)
   gap?: number
   
   // Display
@@ -159,6 +168,7 @@ const box = new BoxRenderable(renderer, {
   id: "box",
   width: 40,
   height: 10,
+  focusable: true,                  // Make box focusable (default: false)
   backgroundColor: "#1a1a2e",
   border: true,
   borderStyle: "single" | "double" | "rounded" | "bold" | "none",
@@ -189,6 +199,9 @@ const input = new InputRenderable(renderer, {
   focusedBackgroundColor: "#2a2a2a",
 })
 
+input.on(InputRenderableEvents.INPUT, (value: string) => {
+  // Fired for all mutating edit actions (typing, paste, delete, etc.)
+})
 input.on(InputRenderableEvents.CHANGE, (value: string) => {
   console.log("Value:", value)
 })
@@ -365,7 +378,7 @@ form.focus()  // Focuses the input, not the box
 
 ## Colors (RGBA)
 
-The `RGBA` class is exported from `@opentui/core` but works across **all frameworks** (Core, React, Solid). Use it for programmatic color manipulation.
+The `RGBA` class is exported from `@opentui/core` but works across **both frameworks** (Core and React). Use it for programmatic color manipulation.
 
 ### Creating Colors
 
@@ -424,13 +437,13 @@ parseColor(RGBA.fromHex("#F00"))  // Pass-through RGBA objects
 | `fromValues()` | Doing color interpolation, animations, math |
 | `parseColor()` | Accepting user input or config that could be any format |
 
-### Using RGBA in React/Solid
+### Using RGBA in React
 
 ```tsx
 // Import from @opentui/core, use in any framework
 import { RGBA } from "@opentui/core"
 
-// React or Solid component
+// React component
 function ThemedBox() {
   const bg = RGBA.fromHex("#1a1a2e")
   const border = RGBA.fromInts(122, 162, 247, 255)
@@ -443,7 +456,7 @@ function ThemedBox() {
 }
 ```
 
-Color props in React/Solid accept both string formats (`"#FF0000"`, `"red"`) and `RGBA` objects.
+Color props in React accept both string formats (`"#FF0000"`, `"red"`) and `RGBA` objects.
 
 ## Keyboard Input
 

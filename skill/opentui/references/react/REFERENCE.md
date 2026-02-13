@@ -24,7 +24,6 @@ Use the React reconciler when:
 | Scenario | Use Instead |
 |----------|-------------|
 | Maximum performance critical | `@opentui/core` (imperative) |
-| Fine-grained reactivity | `@opentui/solid` |
 | Smallest bundle size | `@opentui/core` |
 | Building a framework/library | `@opentui/core` |
 
@@ -167,7 +166,6 @@ See [API Reference](./api.md) for detailed hook documentation.
 ## See Also
 
 - [Core](../core/REFERENCE.md) - Underlying imperative API
-- [Solid](../solid/REFERENCE.md) - Alternative declarative approach
 - [Components](../components/REFERENCE.md) - Component reference by category
 - [Layout](../layout/REFERENCE.md) - Flexbox layout system
 - [Keyboard](../keyboard/REFERENCE.md) - Input handling and shortcuts

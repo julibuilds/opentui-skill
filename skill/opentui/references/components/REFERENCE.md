@@ -1,10 +1,10 @@
 # OpenTUI Components
 
-Reference for all OpenTUI components, organized by category. Components are available in all three frameworks (Core, React, Solid) with slight API differences.
+Reference for all OpenTUI components, organized by category. Components are available in both frameworks (Core, React) with slight API differences.
 
 ## When to Use
 
-Use this reference when you need to find the right component category or compare naming across Core, React, and Solid.
+Use this reference when you need to find the right component category or compare naming across Core and React.
 
 ## Component Categories
 
@@ -29,21 +29,19 @@ Need a component?
 
 Components have different names across frameworks:
 
-| Concept | Core (Class) | React (JSX) | Solid (JSX) |
-|---------|--------------|-------------|-------------|
-| Text | `TextRenderable` | `<text>` | `<text>` |
-| Box | `BoxRenderable` | `<box>` | `<box>` |
-| ScrollBox | `ScrollBoxRenderable` | `<scrollbox>` | `<scrollbox>` |
-| Input | `InputRenderable` | `<input>` | `<input>` |
-| Textarea | `TextareaRenderable` | `<textarea>` | `<textarea>` |
-| Select | `SelectRenderable` | `<select>` | `<select>` |
-| Tab Select | `TabSelectRenderable` | `<tab-select>` | `<tab_select>` |
-| ASCII Font | `ASCIIFontRenderable` | `<ascii-font>` | `<ascii_font>` |
-| Code | `CodeRenderable` | `<code>` | `<code>` |
-| Line Number | `LineNumberRenderable` | `<line-number>` | `<line_number>` |
-| Diff | `DiffRenderable` | `<diff>` | `<diff>` |
-
-**Note**: Solid uses underscores (`tab_select`) while React uses hyphens (`tab-select`).
+| Concept | Core (Class) | React (JSX) |
+|---------|--------------|-------------|
+| Text | `TextRenderable` | `<text>` |
+| Box | `BoxRenderable` | `<box>` |
+| ScrollBox | `ScrollBoxRenderable` | `<scrollbox>` |
+| Input | `InputRenderable` | `<input>` |
+| Textarea | `TextareaRenderable` | `<textarea>` |
+| Select | `SelectRenderable` | `<select>` |
+| Tab Select | `TabSelectRenderable` | `<tab-select>` |
+| ASCII Font | `ASCIIFontRenderable` | `<ascii-font>` |
+| Code | `CodeRenderable` | `<code>` |
+| Line Number | `LineNumberRenderable` | `<line-number>` |
+| Diff | `DiffRenderable` | `<diff>` |
 
 ## Common Properties
 
@@ -65,7 +63,9 @@ flexWrap, gap
 
 // Spacing
 padding, paddingTop, paddingRight, paddingBottom, paddingLeft
+paddingX, paddingY                                              // Axis shorthands
 margin, marginTop, marginRight, marginBottom, marginLeft
+marginX, marginY                                                // Axis shorthands
 
 // Display
 display="flex" | "none"
@@ -116,25 +116,8 @@ const renderer = await createCliRenderer()
 createRoot(renderer).render(<App />)
 ```
 
-### Solid
-
-```tsx
-import { render } from "@opentui/solid"
-
-function App() {
-  return (
-    <box border padding={2}>
-      <text fg="#00FF00">Hello!</text>
-    </box>
-  )
-}
-
-render(() => <App />)
-```
-
 ## See Also
 
 - [Core API](../core/api.md) - Imperative component classes
 - [React API](../react/api.md) - React component props
-- [Solid API](../solid/api.md) - Solid component props
 - [Layout](../layout/REFERENCE.md) - Layout system details

@@ -7,7 +7,6 @@ How to handle keyboard input in OpenTUI applications.
 OpenTUI provides keyboard input handling through:
 - **Core**: `renderer.keyInput` EventEmitter
 - **React**: `useKeyboard()` hook
-- **Solid**: `useKeyboard()` hook
 
 ## When to Use
 
@@ -68,23 +67,6 @@ function App() {
 }
 ```
 
-
-### Solid
-
-```tsx
-import { useKeyboard, useRenderer } from "@opentui/solid"
-
-function App() {
-  const renderer = useRenderer()
-  useKeyboard((key) => {
-    if (key.name === "escape") {
-      renderer.destroy()
-    }
-  })
-  
-  return <text>Press ESC to exit</text>
-}
-```
 
 ## Key Names
 
@@ -212,15 +194,6 @@ useKeyboard(
   { release: true }  // Enable release events
 )
 
-// Solid
-useKeyboard(
-  (key) => {
-    if (key.eventType === "release") {
-      // Key released
-    }
-  },
-  { release: true }
-)
 ```
 
 ## Patterns
@@ -397,7 +370,7 @@ renderer.keyInput.on("paste", (text: string) => {
 })
 ```
 
-### React/Solid
+### React
 
 ```tsx
 // Currently handled through the global keyboard listener

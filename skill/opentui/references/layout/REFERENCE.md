@@ -248,6 +248,18 @@ Parent must have explicit size:
 </box>
 ```
 
+### Axis Shorthands
+
+```tsx
+// Horizontal (left + right)
+<box paddingX={2}>Content</box>
+<box marginX={3}>Content</box>
+
+// Vertical (top + bottom)
+<box paddingY={1}>Content</box>
+<box marginY={2}>Content</box>
+```
+
 ## Positioning
 
 ### Relative (default)

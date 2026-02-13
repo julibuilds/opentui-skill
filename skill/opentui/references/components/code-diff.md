@@ -17,12 +17,6 @@ Display syntax-highlighted code blocks.
   language="typescript"
 />
 
-// Solid
-<code
-  code={sourceCode}
-  language="javascript"
-/>
-
 // Core
 const codeBlock = new CodeRenderable(renderer, {
   id: "code",
@@ -67,12 +61,6 @@ Code display with line numbers, highlighting, and diagnostics.
   language="typescript"
 />
 
-// Solid (note underscore)
-<line_number
-  code={sourceCode}
-  language="typescript"
-/>
-
 // Core
 const codeView = new LineNumberRenderable(renderer, {
   id: "code-view",
@@ -92,13 +80,6 @@ const codeView = new LineNumberRenderable(renderer, {
   showLineNumbers={true}     // Display line numbers
 />
 
-// Solid
-<line_number
-  code={sourceCode}
-  language="typescript"
-  startLine={1}
-  showLineNumbers={true}
-/>
 ```
 
 ### Line Highlighting
@@ -113,12 +94,6 @@ Highlight specific lines:
   highlightedLines={[5, 10, 15]}  // Highlight these lines
 />
 
-// Solid
-<line_number
-  code={sourceCode}
-  language="typescript"
-  highlightedLines={[5, 10, 15]}
-/>
 ```
 
 ### Diagnostics
@@ -137,14 +112,6 @@ Show errors, warnings, and info on specific lines:
   ]}
 />
 
-// Solid
-<line_number
-  code={sourceCode}
-  language="typescript"
-  diagnostics={[
-    { line: 3, severity: "error", message: "Unexpected token" },
-  ]}
-/>
 ```
 
 **Diagnostic severity levels:**
@@ -174,13 +141,6 @@ Unified or split diff viewer with syntax highlighting.
 
 ```tsx
 // React
-<diff
-  oldCode={originalCode}
-  newCode={modifiedCode}
-  language="typescript"
-/>
-
-// Solid
 <diff
   oldCode={originalCode}
   newCode={modifiedCode}
@@ -332,16 +292,6 @@ function ErrorView({ errors, code }) {
 ```
 
 ## Gotchas
-
-### Solid Uses Underscores
-
-```tsx
-// React
-<line-number />
-
-// Solid
-<line_number />
-```
 
 ### Language Required for Highlighting
 

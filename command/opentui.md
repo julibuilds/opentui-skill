@@ -34,7 +34,7 @@ skill({ name: 'opentui' })
 ### Step 3: Identify task type from user request
 
 Analyze $ARGUMENTS to determine:
-- **Framework needed** (Core imperative, React declarative, Solid declarative)
+- **Framework needed** (Core imperative, React declarative)
 - **Task type** (new project setup, component implementation, layout, keyboard handling, debugging, testing)
 
 Use decision trees in SKILL.md to select correct reference files.
@@ -63,7 +63,7 @@ Apply OpenTUI-specific patterns and APIs from references to complete the user's 
 ```
 === OpenTUI Task Complete ===
 
-Framework: <core | react | solid>
+Framework: <core | react>
 Files referenced: <reference files consulted>
 
 <brief summary of what was done>

@@ -52,43 +52,6 @@ function AnimatedBox() {
 }
 ```
 
-### Solid
-
-```tsx
-import { useTimeline } from "@opentui/solid"
-import { createSignal, onMount } from "solid-js"
-
-function AnimatedBox() {
-  const [width, setWidth] = createSignal(0)
-  
-  const timeline = useTimeline({
-    duration: 2000,
-  })
-  
-  onMount(() => {
-    timeline.add(
-      { width: 0 },
-      {
-        width: 50,
-        duration: 2000,
-        ease: "easeOutQuad",
-        onUpdate: (anim) => {
-          setWidth(Math.round(anim.targets[0].width))
-        },
-      }
-    )
-  })
-  
-  return (
-    <box
-      width={width()}
-      height={3}
-      backgroundColor="#6a5acd"
-    />
-  )
-}
-```
-
 ### Core
 
 ```typescript

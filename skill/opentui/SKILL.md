@@ -1,8 +1,8 @@
 ---
 name: opentui
-description: Comprehensive OpenTUI skill for building terminal user interfaces. Covers the core imperative API, React reconciler, and Solid reconciler. Use for any TUI development task including components, layout, keyboard handling, animations, and testing.
+description: Comprehensive OpenTUI skill for building terminal user interfaces. Covers the core imperative API and React reconciler. Use for any TUI development task including components, layout, keyboard handling, animations, and testing.
 metadata:
-   references: core, react, solid
+   references: core, react
 ---
 
 # OpenTUI Platform Skill
@@ -16,7 +16,7 @@ Consolidated skill for building terminal user interfaces with OpenTUI. Use decis
 1. **Use `create-tui` for new projects.** See framework `REFERENCE.md` quick starts.
 2. **`create-tui` options must come before arguments.** `bunx create-tui -t react my-app` works, `bunx create-tui my-app -t react` does NOT.
 3. **Never call `process.exit()` directly.** Use `renderer.destroy()` (see `core/gotchas.md`).
-4. **Text styling requires nested tags in React/Solid.** Use modifier elements, not props (see `components/text-display.md`).
+4. **Text styling requires nested tags in React.** Use modifier elements, not props (see `components/text-display.md`).
 
 ## How to Use This Skill
 
@@ -50,7 +50,6 @@ Cross-cutting concepts in `./references/<concept>/` have `REFERENCE.md` as the e
 ```
 ./references/react/REFERENCE.md           # Start here for React
 ./references/react/api.md              # React components and hooks
-./references/solid/configuration.md    # Solid project setup
 ./references/components/inputs.md      # Input, Textarea, Select docs
 ./references/core/gotchas.md           # Core debugging tips
 ```
@@ -69,8 +68,6 @@ Which framework?
 │  └─ core/ (imperative API)
 ├─ I know React, want familiar component patterns
 │  └─ react/ (React reconciler)
-├─ I want fine-grained reactivity, optimal re-renders
-│  └─ solid/ (Solid reconciler)
 └─ I'm building a library/framework on top of OpenTUI
    └─ core/ (imperative API)
 ```
@@ -168,7 +165,6 @@ For component naming differences and text modifiers, see `components/REFERENCE.m
 |-----------|------------|-------------|
 | Core | `./references/core/REFERENCE.md` | Imperative API, all primitives |
 | React | `./references/react/REFERENCE.md` | React reconciler for declarative TUI |
-| Solid | `./references/solid/REFERENCE.md` | SolidJS reconciler for declarative TUI |
 
 ### Cross-Cutting Concepts
 | Concept | Entry File | Description |

@@ -9,7 +9,7 @@ The primary component for displaying styled text.
 ### Basic Usage
 
 ```tsx
-// React/Solid
+// React
 <text>Hello, World!</text>
 
 // With content prop
@@ -22,9 +22,9 @@ const text = new TextRenderable(renderer, {
 })
 ```
 
-### Styling (React/Solid)
+### Styling (React)
 
-For React and Solid, use **nested modifier tags** for text styling:
+For React, use **nested modifier tags** for text styling:
 
 ```tsx
 <text fg="#FFFFFF" bg="#000000">
@@ -179,9 +179,6 @@ Display large ASCII art text banners.
 // React
 <ascii-font text="TITLE" font="tiny" />
 
-// Solid
-<ascii_font text="TITLE" font="tiny" />
-
 // Core
 const title = new ASCIIFontRenderable(renderer, {
   id: "title",
@@ -252,7 +249,7 @@ Font: block
 
 ### RGBA Class
 
-The `RGBA` class from `@opentui/core` can be used in **all frameworks** (Core, React, Solid) for programmatic color manipulation:
+The `RGBA` class from `@opentui/core` can be used in **both frameworks** (Core and React) for programmatic color manipulation:
 
 ```typescript
 import { RGBA } from "@opentui/core"
@@ -281,10 +278,10 @@ const shadowColor = RGBA.fromValues(0.0, 0.0, 0.0, 0.5) // 50% black
 - `fromInts()` - When you have 8-bit color values (0-255)
 - `fromValues()` - When doing color math or interpolation (normalized 0.0-1.0)
 
-### Using RGBA in React/Solid
+### Using RGBA in React
 
 ```tsx
-// React or Solid - RGBA works with color props
+// React - RGBA works with color props
 import { RGBA } from "@opentui/core"
 
 const primaryColor = RGBA.fromHex("#7aa2f7")
@@ -321,15 +318,6 @@ Text wraps based on parent container:
 function Counter() {
   const [count, setCount] = useState(0)
   return <text>Count: {count}</text>
-}
-```
-
-### Solid
-
-```tsx
-function Counter() {
-  const [count, setCount] = createSignal(0)
-  return <text>Count: {count()}</text>
 }
 ```
 

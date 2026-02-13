@@ -9,7 +9,7 @@ The primary container component with borders, backgrounds, and layout capabiliti
 ### Basic Usage
 
 ```tsx
-// React/Solid
+// React
 <box>
   <text>Content inside box</text>
 </box>
@@ -19,6 +19,14 @@ const box = new BoxRenderable(renderer, {
   id: "container",
 })
 box.add(child)
+```
+
+### Focusable Box
+
+```tsx
+<box focusable>
+  {/* Box can receive focus for keyboard events */}
+</box>
 ```
 
 ### Borders
@@ -110,6 +118,16 @@ Boxes are flex containers by default:
 >
   Spaced content
 </box>
+
+// Axis shorthands
+<box
+  paddingX={2}                // Horizontal padding (left + right)
+  paddingY={1}                // Vertical padding (top + bottom)
+  marginX={3}                 // Horizontal margin (left + right)
+  marginY={2}                 // Vertical margin (top + bottom)
+>
+  Shorthand spacing
+</box>
 ```
 
 ### Dimensions
@@ -153,13 +171,6 @@ A scrollable container for content that exceeds the viewport.
   {items.map((item, i) => (
     <text key={i}>{item}</text>
   ))}
-</scrollbox>
-
-// Solid
-<scrollbox height={10}>
-  <For each={items()}>
-    {(item) => <text>{item}</text>}
-  </For>
 </scrollbox>
 
 // Core
