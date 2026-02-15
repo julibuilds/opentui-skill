@@ -9,7 +9,7 @@ bunx create-tui@latest -t react my-app
 cd my-app && bun install
 ```
 
-The CLI creates the `my-app` directory for you - it must **not already exist**.
+The CLI creates the `my-app` directory automatically - it must **not already exist**.
 
 Options: `--no-git` (skip git init), `--no-install` (skip bun install)
 
@@ -227,7 +227,7 @@ OpenTUI React supports React DevTools for debugging.
    npx react-devtools@7
    ```
 
-3. Start your app with `DEV=true` environment variable:
+3. Start the app with `DEV=true` environment variable:
    ```bash
    DEV=true bun run src/index.tsx
    ```

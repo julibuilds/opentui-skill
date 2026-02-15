@@ -203,7 +203,12 @@ input.on(InputRenderableEvents.INPUT, (value: string) => {
   // Fired for all mutating edit actions (typing, paste, delete, etc.)
 })
 input.on(InputRenderableEvents.CHANGE, (value: string) => {
-  console.log("Value:", value)
+  // Fired on blur or Enter (committed value)
+  console.log("Committed:", value)
+})
+input.on(InputRenderableEvents.ENTER, (value: string) => {
+  // Fired when Enter key is pressed
+  console.log("Enter pressed:", value)
 })
 
 input.focus()  // Must be focused to receive input
@@ -433,7 +438,7 @@ parseColor(RGBA.fromHex("#F00"))  // Pass-through RGBA objects
 | Method | Use When |
 |--------|----------|
 | `fromHex()` | Working with design specs, CSS colors, config files |
-| `fromInts()` | You have 8-bit values (0-255), common in graphics |
+| `fromInts()` | Working with 8-bit values (0-255), common in graphics |
 | `fromValues()` | Doing color interpolation, animations, math |
 | `parseColor()` | Accepting user input or config that could be any format |
 

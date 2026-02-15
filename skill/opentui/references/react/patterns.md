@@ -172,22 +172,24 @@ function AutoFocusInput() {
 import { useKeyboard } from "@opentui/react"
 
 function App() {
+  const renderer = useRenderer()
+
   useKeyboard((key) => {
     // Quit on Escape or Ctrl+C
     if (key.name === "escape" || (key.ctrl && key.name === "c")) {
-      process.exit(0)
+      renderer.destroy()  // Never use process.exit() directly!
     }
-    
+
     // Toggle help on ?
     if (key.name === "?" || (key.shift && key.name === "/")) {
       setShowHelp(h => !h)
     }
-    
+
     // Vim-style navigation
     if (key.name === "j") moveDown()
     if (key.name === "k") moveUp()
   })
-  
+
   return <box>{/* ... */}</box>
 }
 ```
@@ -240,16 +242,16 @@ function LoginForm() {
         <text>Username:</text>
         <input
           value={username}
-          onChange={setUsername}
+          onInput={setUsername}
           width={20}
         />
       </box>
-      
+
       <box flexDirection="row" gap={1}>
         <text>Password:</text>
         <input
           value={password}
-          onChange={setPassword}
+          onInput={setPassword}
           width={20}
         />
       </box>
@@ -282,7 +284,7 @@ function ValidatedForm() {
     <box flexDirection="column" gap={1}>
       <input
         value={email}
-        onChange={validateEmail}
+        onInput={validateEmail}
         placeholder="Email"
       />
       {error && <text fg="red">{error}</text>}

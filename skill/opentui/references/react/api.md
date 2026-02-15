@@ -210,6 +210,32 @@ function AnimatedBox() {
 
 > **Note**: Do NOT use `bold`, `italic`, `underline` as props on `<text>`. Use nested modifier tags like `<strong>`, `<em>`, `<u>` instead.
 
+### Input Component
+
+```tsx
+<input
+  value={value}
+  placeholder="Enter text..."
+  focused
+  width={30}
+  backgroundColor="#1a1a1a"
+  textColor="#FFFFFF"
+  cursorColor="#00FF00"
+  focusedBackgroundColor="#2a2a2a"
+  onInput={(value) => setValue(value)}
+  onChange={(value) => console.log("Committed:", value)}
+  onSubmit={(value) => handleSubmit(value)}
+/>
+```
+
+**Event props:**
+
+| Prop | Fires When | Use Case |
+|------|-----------|----------|
+| `onInput` | Every edit action (typing, paste, delete) | Update state on each keystroke |
+| `onChange` | Blur or Enter (committed value) | Validate on commit |
+| `onSubmit` | Enter key pressed | Submit form |
+
 ### Box Component
 
 ```tsx
@@ -277,34 +303,17 @@ function AnimatedBox() {
 </scrollbox>
 ```
 
-### Input Component
-
-```tsx
-<input
-  value={value}
-  onChange={(newValue) => setValue(newValue)}
-  placeholder="Enter text..."
-  focused                   // Start focused
-  width={30}
-  backgroundColor="#1a1a1a"
-  textColor="#FFFFFF"
-  cursorColor="#00FF00"
-  focusedBackgroundColor="#2a2a2a"
-/>
-```
-
 ### Textarea Component
 
 ```tsx
 <textarea
-  value={text}
-  onChange={(newValue) => setText(newValue)}
+  initialValue={text}
+  onContentChange={(event) => handleChange(event)}
   placeholder="Enter multiple lines..."
   focused
   width={40}
   height={10}
-  showLineNumbers
-  wrapText
+  wrapMode="word"
 />
 ```
 
@@ -351,39 +360,66 @@ function AnimatedBox() {
 ### Code Component
 
 ```tsx
+import { SyntaxStyle, RGBA } from "@opentui/core"
+
+const syntaxStyle = SyntaxStyle.fromStyles({
+  keyword: { fg: RGBA.fromHex("#ff6b6b"), bold: true },
+  string: { fg: RGBA.fromHex("#51cf66") },
+  comment: { fg: RGBA.fromHex("#868e96"), italic: true },
+  number: { fg: RGBA.fromHex("#ffd43b") },
+  default: { fg: RGBA.fromHex("#ffffff") },
+})
+
 <code
-  code={sourceCode}
-  language="typescript"
-  showLineNumbers
-  highlightLines={[1, 5, 10]}
+  content={sourceCode}
+  filetype="typescript"
+  syntaxStyle={syntaxStyle}
 />
 ```
+
+**Props:** `content` (code string), `filetype` (language for highlighting), `syntaxStyle` (SyntaxStyle instance), `conceal` (boolean), `drawUnstyledText` (boolean).
 
 ### Line Number Component
 
+A **container** that wraps a `<code>` child and adds a line number gutter. Use refs for line colors and signs.
+
 ```tsx
-<line-number
-  code={sourceCode}
-  language="typescript"
-  startLine={1}
-  highlightedLines={[5]}
-  diagnostics={[
-    { line: 3, severity: "error", message: "Syntax error" }
-  ]}
-/>
+import type { LineNumberRenderable } from "@opentui/core"
+import { useRef, useEffect } from "react"
+
+const lineNumberRef = useRef<LineNumberRenderable>(null)
+
+useEffect(() => {
+  lineNumberRef.current?.setLineColor(1, "#1a4d1a")
+  lineNumberRef.current?.setLineSign(1, { after: " +", afterColor: "#22c55e" })
+}, [])
+
+<line-number ref={lineNumberRef} fg="#6b7280" bg="#161b22" showLineNumbers>
+  <code content={sourceCode} filetype="typescript" syntaxStyle={syntaxStyle} />
+</line-number>
 ```
+
+**Props:** `fg`, `bg`, `minWidth`, `paddingRight`, `showLineNumbers`, `lineNumberOffset`, `focused`.
+
+**Ref methods:** `setLineColor(line, color)`, `clearLineColor(line)`, `clearAllLineColors()`, `setLineColors(map)`, `setLineSign(line, sign)`, `clearLineSign(line)`, `clearAllLineSigns()`.
 
 ### Diff Component
 
+Accepts a **unified diff string** (from `git diff` or diff tools), not separate old/new code.
+
 ```tsx
 <diff
-  oldCode={originalCode}
-  newCode={modifiedCode}
-  language="typescript"
-  mode="unified"            // unified | split
+  diff={unifiedDiffString}
+  filetype="typescript"
+  syntaxStyle={syntaxStyle}
+  view="unified"              // unified | split
   showLineNumbers
+  addedBg="#2d4f2d"
+  removedBg="#4f2d2d"
 />
 ```
+
+**Props:** `diff` (unified diff string), `view` (`"unified"` | `"split"`), `filetype`, `syntaxStyle`, `showLineNumbers`, plus styling props: `addedBg`, `removedBg`, `contextBg`, `addedSignColor`, `removedSignColor`, `lineNumberFg`, `lineNumberBg`.
 
 ## Type Exports
 
@@ -393,11 +429,16 @@ import type {
   TextProps,
   BoxProps,
   InputProps,
+  TextareaProps,
   SelectProps,
-  
+  CodeProps,
+  DiffProps,
+  LineNumberProps,
+  MarkdownProps,
+
   // Hook types
   KeyEvent,
-  
+
   // From core
   CliRenderer,
 } from "@opentui/react"

@@ -10,7 +10,7 @@ OpenTUI provides keyboard input handling through:
 
 ## When to Use
 
-Use this reference when you need keyboard shortcuts, focus-aware input handling, or custom keybindings.
+Consult this reference for keyboard shortcuts, focus-aware input handling, or custom keybindings.
 
 ## KeyEvent Object
 
@@ -289,8 +289,8 @@ function Editor() {
     <box flexDirection="column">
       <text>Mode: {mode}</text>
       <textarea
-        value={content}
-        onChange={setContent}
+        initialValue={content}
+        onContentChange={(event) => console.log("Changed")}
         focused={mode === "insert"}
       />
     </box>

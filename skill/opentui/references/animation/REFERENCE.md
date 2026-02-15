@@ -11,7 +11,7 @@ Animations in OpenTUI use:
 
 ## When to Use
 
-Use this reference when you need timeline-driven animations, easing curves, or progressive transitions.
+Consult this reference for timeline-driven animations, easing curves, or progressive transitions.
 
 ## Basic Usage
 

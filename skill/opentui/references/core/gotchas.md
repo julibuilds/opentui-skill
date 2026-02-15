@@ -80,7 +80,7 @@ dotenv.config()
 
 ### Cannot See console.log Output
 
-OpenTUI captures console output for the debug overlay. You can't see logs in the terminal while the TUI is running.
+OpenTUI captures console output for the debug overlay. Logs are not visible in the terminal while the TUI is running.
 
 **Solutions:**
 

@@ -13,11 +13,11 @@ OpenTUI React provides:
 ## When to Use React
 
 Use the React reconciler when:
-- You're familiar with React patterns
-- You want declarative UI composition
-- You need React's ecosystem (context, state management libraries)
+- Familiarity with React patterns is present
+- Declarative UI composition is preferred
+- React's ecosystem is needed (context, state management libraries)
 - Building applications with complex state
-- Team knows React already
+- The team already knows React
 
 ## When NOT to Use React
 
@@ -35,7 +35,7 @@ cd my-app
 bun run src/index.tsx
 ```
 
-The CLI creates the `my-app` directory for you - it must **not already exist**.
+The CLI creates the `my-app` directory automatically - it must **not already exist**.
 
 **Agent guidance**: Always use autonomous mode with `-t <template>` flag. Never use interactive mode (`bunx create-tui@latest my-app` without `-t`) as it requires user prompts that agents cannot respond to.
 

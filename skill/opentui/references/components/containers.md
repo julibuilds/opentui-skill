@@ -251,8 +251,8 @@ function Card({ title, children }) {
       marginBottom={1}
     >
       {title && (
-        <text fg="#00FFFF" bold>
-          {title}
+        <text fg="#00FFFF">
+          <strong>{title}</strong>
         </text>
       )}
       <box marginTop={title ? 1 : 0}>
@@ -280,7 +280,7 @@ function Panel({ title, children, width = 40 }) {
           padding={1}
           backgroundColor="#2a2a4e"
         >
-          <text bold>{title}</text>
+          <text><strong>{title}</strong></text>
         </box>
       )}
       <box padding={2}>

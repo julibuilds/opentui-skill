@@ -12,7 +12,7 @@ Single-line text input field.
 // React
 <input
   value={value}
-  onChange={(newValue) => setValue(newValue)}
+  onInput={(newValue) => setValue(newValue)}
   placeholder="Enter text..."
   focused
 />
@@ -22,7 +22,7 @@ const input = new InputRenderable(renderer, {
   id: "name",
   placeholder: "Enter text...",
 })
-input.on(InputRenderableEvents.CHANGE, (value) => {
+input.on(InputRenderableEvents.INPUT, (value) => {
   console.log("Value:", value)
 })
 input.focus()
@@ -43,18 +43,32 @@ input.focus()
 
 ### Events
 
+**React event props:**
+
+| Prop | Fires When | Use Case |
+|------|-----------|----------|
+| `onInput` | Every edit action (typing, paste, delete) | Update state on each keystroke |
+| `onChange` | Blur or Enter (committed value) | Validate on commit |
+| `onSubmit` | Enter key pressed | Submit form |
+
 ```tsx
 // React
 <input
-  onChange={(value) => console.log("Changed:", value)}
-  onFocus={() => console.log("Focused")}
-  onBlur={() => console.log("Blurred")}
+  onInput={(value) => setValue(value)}
+  onChange={(value) => console.log("Committed:", value)}
+  onSubmit={(value) => handleSubmit(value)}
 />
 
 // Core
-input.on(InputRenderableEvents.CHANGE, (value) => {})
-input.on(InputRenderableEvents.FOCUS, () => {})
-input.on(InputRenderableEvents.BLUR, () => {})
+input.on(InputRenderableEvents.INPUT, (value) => {
+  // Fired for all mutating edit actions (typing, paste, delete, etc.)
+})
+input.on(InputRenderableEvents.CHANGE, (value) => {
+  // Fired on blur or Enter (committed value)
+})
+input.on(InputRenderableEvents.ENTER, (value) => {
+  // Fired when Enter key is pressed
+})
 ```
 
 ### Controlled Input
@@ -63,11 +77,11 @@ input.on(InputRenderableEvents.BLUR, () => {})
 // React
 function ControlledInput() {
   const [value, setValue] = useState("")
-  
+
   return (
     <input
       value={value}
-      onChange={setValue}
+      onInput={setValue}
       focused
     />
   )
@@ -84,8 +98,8 @@ Multi-line text input field.
 ```tsx
 // React
 <textarea
-  value={text}
-  onChange={(newText) => setText(newText)}
+  initialValue={text}
+  onContentChange={(event) => handleChange(event)}
   placeholder="Enter multiple lines..."
   width={40}
   height={10}
@@ -105,10 +119,12 @@ const textarea = new TextareaRenderable(renderer, {
 
 ```tsx
 <textarea
-  showLineNumbers        // Display line numbers
-  wrapText              // Wrap long lines
-  readOnly              // Disable editing
-  tabSize={2}           // Tab character width
+  wrapMode="word"          // "none" | "char" | "word" (default: "word")
+  showCursor={true}        // Show/hide cursor
+  tabIndicator={2}         // Tab character display width
+  syntaxStyle={syntaxStyle} // Syntax highlighting style
+  cursorColor="#00FF00"    // Cursor color
+  selectable              // Allow text selection
 />
 ```
 
@@ -119,11 +135,22 @@ Default keybindings:
 
 ### Syntax Highlighting
 
+To add syntax highlighting, wrap the textarea in a `<line-number>` container and use a `SyntaxStyle`:
+
 ```tsx
+import { SyntaxStyle, RGBA } from "@opentui/core"
+
+const syntaxStyle = SyntaxStyle.fromStyles({
+  keyword: { fg: RGBA.fromHex("#ff6b6b") },
+  string: { fg: RGBA.fromHex("#51cf66") },
+  default: { fg: RGBA.fromHex("#ffffff") },
+})
+
 <textarea
-  language="typescript"
-  value={code}
-  onChange={setCode}
+  initialValue={code}
+  syntaxStyle={syntaxStyle}
+  onContentChange={(event) => handleChange(event)}
+  focused
 />
 ```
 
@@ -362,7 +389,7 @@ function LoginForm() {
         <text>Username:</text>
         <input
           value={username}
-          onChange={setUsername}
+          onInput={setUsername}
           focused={focusField === "username"}
           width={20}
         />
@@ -371,7 +398,7 @@ function LoginForm() {
         <text>Password:</text>
         <input
           value={password}
-          onChange={setPassword}
+          onInput={setPassword}
           focused={focusField === "password"}
           width={20}
         />
@@ -403,7 +430,7 @@ function SearchableList({ items, onItemSelected }) {
     <box flexDirection="column">
       <input
         value={query}
-        onChange={setQuery}
+        onInput={setQuery}
         placeholder="Search..."
         focused={focusSearch}
       />

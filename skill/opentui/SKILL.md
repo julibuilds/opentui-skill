@@ -36,8 +36,8 @@ Cross-cutting concepts in `./references/<concept>/` have `REFERENCE.md` as the e
 
 ### Reading Order
 
-1. Start with `REFERENCE.md` for your chosen framework
-2. Then read additional files relevant to your task:
+1. Start with `REFERENCE.md` for the chosen framework
+2. Then read additional files relevant to the task:
    - Building components -> `api.md` + `components/<category>.md`
    - Setting up project -> `configuration.md`
    - Layout/positioning -> `layout/REFERENCE.md`

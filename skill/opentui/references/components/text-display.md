@@ -275,7 +275,7 @@ const shadowColor = RGBA.fromValues(0.0, 0.0, 0.0, 0.5) // 50% black
 
 **When to use each method:**
 - `fromHex()` - When working with design specs or CSS colors
-- `fromInts()` - When you have 8-bit color values (0-255)
+- `fromInts()` - When working with 8-bit color values (0-255)
 - `fromValues()` - When doing color math or interpolation (normalized 0.0-1.0)
 
 ### Using RGBA in React

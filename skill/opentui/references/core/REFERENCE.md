@@ -1,6 +1,6 @@
 # OpenTUI Core (@opentui/core)
 
-The foundational library for building terminal user interfaces. Provides an imperative API with all primitives, giving you maximum control over rendering, state, and behavior.
+The foundational library for building terminal user interfaces. Provides an imperative API with all primitives for maximum control over rendering, state, and behavior.
 
 ## Overview
 
@@ -37,7 +37,7 @@ cd my-app
 bun run src/index.ts
 ```
 
-The CLI creates the `my-app` directory for you - it must **not already exist**.
+The CLI creates the `my-app` directory automatically - it must **not already exist**.
 
 **Agent guidance**: Always use autonomous mode with `-t <template>` flag. Never use interactive mode (`bunx create-tui@latest my-app` without `-t`) as it requires user prompts that agents cannot respond to.
 

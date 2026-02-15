@@ -11,7 +11,7 @@ OpenTUI provides:
 
 ## When to Use
 
-Use this reference when you need snapshot tests, interaction testing, or renderer-based regression checks.
+Consult this reference for snapshot tests, interaction testing, or renderer-based regression checks.
 
 ## Test Setup
 
@@ -484,7 +484,7 @@ bun test --verbose
 
 ### Async Rendering
 
-Always call `renderOnce()` after setting up your component to ensure rendering is complete:
+Always call `renderOnce()` after setting up the component to ensure rendering is complete:
 
 ```typescript
 const testSetup = await testRender(<MyComponent />, { width: 40, height: 10 })

@@ -4,7 +4,7 @@ Reference for all OpenTUI components, organized by category. Components are avai
 
 ## When to Use
 
-Use this reference when you need to find the right component category or compare naming across Core and React.
+Consult this reference to find the right component category or compare naming across Core and React.
 
 ## Component Categories
 
